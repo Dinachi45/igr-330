@@ -66,6 +66,44 @@ echo $res
 catch(PDOException $e){
     echo "Connection failed:".$e->getMessage();
 }
+if(isset($_POST["add"]))
+         add();
+         function add(){
+ try{
+   $orderid= $_POST["OrderID"];
+   $userid = $_POST["UserID"];
+  $productid = $_POST["ProductID"];
+  $orderdate=$_POST["Orderdate"];
+  $orderstatus=$_POST["Orderstatus"];
+  $quantity=$_POST["Quantity"];
+   $conn = new PDO("mysql:host=localhost;dbname=assign", "root","Howfarguy23");
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $sql= "INSERT INTO Order (OrderID, UserID, ProductID, Orderdate, Orderstatus, Quantity) VALUES ('$orderid', '$userid','$productid','$orderdate'
+    ,'$orderstatus', '$quantity')";
+    $conn->exec($sql);
+    echo "record inserted";
+ }
+ 
+ catch(PDOException $e){
+    echo "Connection failed:".$e->getMessage();
+ }
+ $conn= null;
+        
+        
+        
+        
+        }
+     
+
+
+
+         
+
+
+
+
+
+
 
 
 }
