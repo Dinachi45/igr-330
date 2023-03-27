@@ -41,6 +41,30 @@ function call(){
              echo "Connection failed:".$e->getMessage();
          }
      
+  if(isset($_POST["add"]))
+         add();
+         function add(){
+try{
+   $productid= $_POST["ProductID"];
+   $productname = $_POST["Productname"];
+   $category = $_POST["Category"];
+   $conn = new PDO("mysql:host=localhost;dbname=assign", "root","Howfarguy23");
+   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $sql= "INSERT INTO Product (ProductID, Productname, Category) VALUES ('$productid', '$productname','$category')";
+    $conn->exec($sql);
+    echo "record inserted";
+}
+
+catch(PDOException $e){
+    echo "Connection failed:".$e->getMessage();
+}
+$conn= null;
  
 }
+
+
+
+
+
+
 ?>
