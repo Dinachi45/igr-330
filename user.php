@@ -44,6 +44,24 @@ function call(){
          }
      
  
+        if(isset($_POST["add"]))
+        add();
+        function add(){
+try{
+  $userid= $_POST["UserID"];
+  $username = $_POST["Username"];
+ $city = $_POST["City"];
+  $conn = new PDO("mysql:host=localhost;dbname=assign", "root","Howfarguy23");
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+   $sql= "INSERT INTO User (UserID, Username, City) VALUES ('$userid', '$username','$city')";
+   $conn->exec($sql);
+   echo "record inserted";
+}
+
+catch(PDOException $e){
+   echo "Connection failed:".$e->getMessage();
+}
+$conn= null;
 }
 
 
